@@ -13,21 +13,8 @@ public class AccessDB
     {
         Path file = null;
         try {
-          file = Paths.get("M:\\Q_FILES\\Q_DATABASES\\Test.mdb");
-//            BufferedReader reader = Files.newBufferedReader(file, Charset.defaultCharset());
-//            
-//            String line;
-//            while((line = reader.readLine()) != null) 
-//            {
-//                System.out.println(line);
-//                StringTokenizer tokenizer = new StringTokenizer(line,  " ");
-//                while((line = reader.readLine()) != null)
-//                {
-//                    System.out.println(line);
-//                }
-//                
-//            }
-//            reader.close();
+          file = Paths.get("M:\\Q_FILES\\Q_DATABASES\\DeskTop.mdb");
+
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -45,9 +32,9 @@ public class AccessDB
        //    con = DriverManager.getConnection("jdbc:ucanaccess://HyperLink.mdb");
            con = DriverManager.getConnection("jdbc:ucanaccess://" + makeAPath());
            st = con.createStatement();
-           re=st.executeQuery("SELECT * FROM tblOne");
+           re=st.executeQuery("SELECT REPLACE(Hyper, '..', 'M:/dmgdcg2') FROM tblHyperLinksOnly ");  //WHERE Hyper LIKE '%..%'");
            while(re.next()) {
-               System.out.println(re.getInt(1) + re.getString(2));
+               System.out.println(re.getString(1) + " " + re.getString(2));
            }
        } catch (Exception e) {
            System.out.println(e);
